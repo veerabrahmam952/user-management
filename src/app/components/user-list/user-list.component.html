@@ -1,0 +1,132 @@
+
+<div class="container">
+  <div class="header-section">
+    <h1>User Management</h1>
+    
+    <div class="search-container">
+      <div class="search-box">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (input)="performSearch()"
+          placeholder="Search users..." 
+          class="search-input">
+        <button 
+          *ngIf="searchTerm" 
+          (click)="clearSearch()" 
+          class="clear-search-btn"
+          title="Clear search">
+          ✕
+        </button>
+      </div>
+      <div class="search-results" *ngIf="searchTerm">
+        Found {{ getDisplayedUserCount() }} result(s)
+      </div>
+    </div>
+  </div>
+  
+  <div class="table-container">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th *ngFor="let column of columns" [class]="'column-' + column.type">
+            {{ column.label }}
+          </th>
+          <th class="actions-column">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users; let i = index" 
+            class="table-row"
+            (click)="onRowClick(user)"
+            [class.editing]="isRowInEditMode(i)">
+          <td *ngFor="let column of columns" 
+              class="table-cell">
+            
+            <div *ngIf="!isRowInEditMode(i)" class="cell-content">
+              {{ formatCellValue(user[column.key]) }}
+            </div>
+            
+            <div *ngIf="isRowInEditMode(i)" class="edit-container">
+              <input 
+                type="text"
+                [ngModel]="getEditValue(i, column.key)"
+                (ngModelChange)="updateEditValue(i, column.key, $event)"
+                class="edit-input">
+            </div>
+          </td>
+          <td class="actions-cell">
+            <div class="action-buttons">
+              <button 
+                *ngIf="!isRowInEditMode(i)"
+                (click)="toggleRowEdit(i, $event)" 
+                class="action-btn edit-btn"
+                title="Edit Row">
+                <span class="icon">✏️</span>
+              </button>
+              <button 
+                *ngIf="isRowInEditMode(i)"
+                (click)="saveRowEdit(i, $event)" 
+                class="action-btn save-btn"
+                title="Save Changes">
+                <span class="icon">💾</span>
+              </button>
+              <button 
+                *ngIf="isRowInEditMode(i)"
+                (click)="cancelRowEdit(i, $event)" 
+                class="action-btn cancel-btn"
+                title="Cancel Changes">
+                <span class="icon">❌</span>
+              </button>
+              <button 
+                *ngIf="!isRowInEditMode(i)"
+                (click)="viewDetails(user, $event)" 
+                class="action-btn view-btn"
+                title="View Details">
+                <span class="icon">👁️</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div class="pagination-container" *ngIf="totalPages > 1">
+    <div class="pagination">
+      <button 
+        class="page-btn" 
+        [disabled]="currentPage === 1"
+        (click)="goToPage(currentPage - 1)">
+        ‹ Previous
+      </button>
+      
+      <button 
+        *ngFor="let page of getPageNumbers()"
+        class="page-btn"
+        [class.active]="page === currentPage"
+        (click)="goToPage(page)">
+        {{ page }}
+      </button>
+      
+      <button 
+        class="page-btn" 
+        [disabled]="currentPage === totalPages"
+        (click)="goToPage(currentPage + 1)">
+        Next ›
+      </button>
+    </div>
+    
+    <div class="pagination-info">
+      Showing {{ (currentPage - 1) * itemsPerPage + 1 }} to 
+      {{ Math.min(currentPage * itemsPerPage, getDisplayedUserCount()) }} of 
+      {{ getDisplayedUserCount() }} entries
+      <span *ngIf="searchTerm" class="search-info">(filtered from {{ allUsers.length }} total)</span>
+    </div>
+  </div>
+  
+  <div *ngIf="allUsers.length === 0" class="loading">
+    Loading users...
+  </div>
+</div>

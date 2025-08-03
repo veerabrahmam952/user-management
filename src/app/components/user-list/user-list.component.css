@@ -1,0 +1,315 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.header-section {
+  margin-bottom: 20px;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+  font-size: 28px;
+  text-align: center;
+}
+
+.search-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px;
+  padding-right: 40px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  background: white;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  font-size: 10px;
+}
+
+.clear-search-btn:hover {
+  background: #dc3545;
+}
+
+.search-results {
+  color: #6c757d;
+  font-size: 14px;
+  padding: 5px 10px;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.table-container {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.user-table thead {
+  background: #007bff;
+}
+
+.user-table th {
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
+  color: white;
+  font-size: 14px;
+}
+
+.table-row {
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.table-row:hover {
+  background: #f8f9fa;
+}
+
+.table-row.editing {
+  background: #e3f2fd;
+}
+
+.table-cell {
+  padding: 12px;
+  max-width: 200px;
+  vertical-align: middle;
+}
+
+.cell-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+}
+
+.edit-container {
+  width: 100%;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #007bff;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.actions-column {
+  width: 120px;
+  text-align: center;
+  background: #007bff;
+}
+
+.actions-cell {
+  padding: 8px;
+  text-align: center;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.action-btn:hover {
+  opacity: 0.8;
+}
+
+.edit-btn {
+  background: #ffc107;
+  color: #333;
+}
+
+.save-btn {
+  background: #28a745;
+  color: white;
+}
+
+.cancel-btn {
+  background: #dc3545;
+  color: white;
+}
+
+.view-btn {
+  background: #6c757d;
+  color: white;
+}
+
+.action-btn .icon {
+  display: block;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.pagination {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.page-btn {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  background: white;
+  color: #333;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  min-width: 36px;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.page-btn.active {
+  background: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.page-btn:disabled {
+  background: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .search-box {
+    max-width: 100%;
+  }
+
+  .user-table {
+    font-size: 12px;
+  }
+
+  .table-cell {
+    padding: 8px;
+    max-width: 120px;
+  }
+
+  .pagination-container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .page-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+    min-width: 32px;
+  }
+
+  .action-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .action-buttons {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .actions-cell {
+    padding: 6px 4px;
+  }
+}

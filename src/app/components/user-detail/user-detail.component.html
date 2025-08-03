@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="header">
+    <button (click)="goBack()" class="back-btn">← Back to Users</button>
+    <h1>User Details</h1>
+  </div>
+
+  <div *ngIf="user" class="user-detail-card">
+    <div class="detail-grid">
+      <div *ngFor="let key of userKeys" class="detail-item" [class]="'type-' + getValueType(user[key])">
+        <div class="detail-label">{{ formatKey(key) }}</div>
+        <div class="detail-value" [class]="'value-' + getValueType(user[key])">
+          <pre *ngIf="getValueType(user[key]) === 'object'">{{ formatValue(user[key]) }}</pre>
+          <span *ngIf="getValueType(user[key]) !== 'object'">{{ formatValue(user[key]) }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="!user" class="error-message">
+    <h2>User not found</h2>
+    <p>The requested user could not be found.</p>
+    <button (click)="goBack()" class="back-btn">Back to Users</button>
+  </div>
+</div>
